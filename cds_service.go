@@ -2,7 +2,11 @@
 	zrhost := zcds.Rhost
 
 	if ! strings.Contains(zrhost, ":65008") {
-		zrhost = zrhost + ":" + PORT
+		if strings.Contains(zrhost, "exactcloud") { 
+			zrhost = zrhost + ":" + PORTC
+		} else {
+			zrhost = zrhost + ":" + PORT
+		}
 	}
 
  	conn, err := net.Dial("tcp", zrhost)
